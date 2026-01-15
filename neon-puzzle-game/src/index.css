@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: #00f5ff;
+  --color-neon-purple: #bf00ff;
+  --color-neon-green: #39ff14;
+  --color-neon-pink: #ff00ff;
+  --color-neon-yellow: #ffff00;
+  --color-dark-bg: #0a0a0f;
+  --color-dark-card: #12121a;
+  --color-dark-border: #1f1f2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0f;
+  color: white;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 5px #00f5ff, 0 0 10px rgba(0,245,255,0.5);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 5px #bf00ff, 0 0 10px rgba(191,0,255,0.5);
+}
+
+.neon-glow-green {
+  box-shadow: 0 0 5px #39ff14, 0 0 10px rgba(57,255,20,0.5);
+}
+
+.neon-glow-pink {
+  box-shadow: 0 0 5px #ff00ff, 0 0 10px rgba(255,0,255,0.5);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 8px rgba(0,245,255,0.7);
+}
+
+.neon-text-purple {
+  text-shadow: 0 0 8px rgba(191,0,255,0.7);
+}
+
+.neon-text-green {
+  text-shadow: 0 0 8px rgba(57,255,20,0.7);
+}
+
+.neon-text-pink {
+  text-shadow: 0 0 8px rgba(255,0,255,0.7);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.1) 0%, rgba(191, 0, 255, 0.1) 50%, rgba(255, 0, 255, 0.1) 100%);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
