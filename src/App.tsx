@@ -61,12 +61,21 @@ const AppContent: React.FC = () => {
     dispatch({ type: 'SET_SCREEN', payload: 'category' });
   };
 
+  const handleSelectCategoryFromLanding = (category: PuzzleCategory) => {
+    dispatch({ type: 'SELECT_CATEGORY', payload: category });
+    dispatch({ type: 'SET_SCREEN', payload: 'difficulty' });
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       <WelcomePopup onStartPlaying={handleStartPlaying} />
       <AnimatePresence mode="wait">
         {state.currentScreen === 'landing' && (
-          <Landing key="landing" onStartPlaying={handleStartPlaying} />
+          <Landing 
+            key="landing" 
+            onStartPlaying={handleStartPlaying} 
+            onSelectCategory={handleSelectCategoryFromLanding}
+          />
         )}
         
         {state.currentScreen === 'category' && (

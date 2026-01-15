@@ -7,12 +7,14 @@ import { HowItWorks } from '../components/landing/HowItWorks';
 import { Footer } from '../components/landing/Footer';
 import { FloatingIcons } from '../components/common/FloatingIcons';
 import { Header } from '../components/common/Header';
+import type { PuzzleCategory } from '../types/puzzle';
 
 interface LandingProps {
   onStartPlaying: () => void;
+  onSelectCategory?: (category: PuzzleCategory) => void;
 }
 
-export const Landing: React.FC<LandingProps> = ({ onStartPlaying }) => {
+export const Landing: React.FC<LandingProps> = ({ onStartPlaying, onSelectCategory }) => {
   const scrollToHowItWorks = () => {
     document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -24,7 +26,7 @@ export const Landing: React.FC<LandingProps> = ({ onStartPlaying }) => {
       <Hero onStartPlaying={onStartPlaying} onHowItWorks={scrollToHowItWorks} />
       <Stats />
       <Features />
-      <CategoriesPreview onCategoryClick={onStartPlaying} />
+      <CategoriesPreview onCategoryClick={onSelectCategory} />
       <GameDemo />
       <HowItWorks />
       <Footer />

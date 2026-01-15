@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import type { Difficulty } from '../../types/puzzle';
 import { useGame } from '../../context/GameContext';
 import { isDifficultyUnlocked } from '../../utils/gameLogic';
+import { getCategoryName } from '../../data/puzzles';
 
 interface JourneyMapProps {
   onSelectLevel: (difficulty: Difficulty) => void;
@@ -17,7 +18,8 @@ const levels: { id: Difficulty; name: string; color: string }[] = [
 ];
 
 export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectLevel, onBack }) => {
-  const { progress } = useGame();
+  const { state, progress } = useGame();
+  const categoryName = state.selectedCategory ? getCategoryName(state.selectedCategory) : '';
 
   // Handle browser back button / touchpad swipe
   useEffect(() => {
@@ -59,13 +61,22 @@ export const JourneyMap: React.FC<JourneyMapProps> = ({ onSelectLevel, onBack })
         ))}
       </div>
 
-      <motion.h1 initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-        className="text-3xl md:text-4xl font-bold text-center mb-1 mt-12">
-        <span className="text-white">Your </span>
-        <span className="text-[#00f5ff]" style={{ textShadow: '0 0 15px #00f5ff' }}>Journey</span>
-      </motion.h1>
+      {/* Welcome Message with Category Name */}
+      <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+        className="text-center mt-12 mb-2">
+        <p className="text-gray-400 text-sm mb-1">Welcome to</p>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+          <span className="text-[#00f5ff]" style={{ textShadow: '0 0 15px #00f5ff' }}>{categoryName}</span>
+        </h1>
+      </motion.div>
+
+      <motion.h2 initial={{ y: -10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 }}
+        className="text-xl md:text-2xl font-bold text-center mb-1">
+        <span className="text-white">Choose Your </span>
+        <span className="text-[#bf00ff]" style={{ textShadow: '0 0 10px #bf00ff' }}>Track</span>
+      </motion.h2>
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-        className="text-gray-400 text-sm mb-10">Select your difficulty level</motion.p>
+        className="text-gray-400 text-sm mb-8">Pick a difficulty to begin your adventure</motion.p>
 
       {/* Vertical Journey Path */}
       <div className="relative w-full max-w-md mx-auto">
