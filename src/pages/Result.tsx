@@ -9,11 +9,12 @@ import { getCategoryName } from '../data/puzzles';
 
 interface ResultProps {
   onPlayAgain: () => void;
+  onNextLevel: () => void;
   onHome: () => void;
   onProgress: () => void;
 }
 
-export const Result: React.FC<ResultProps> = ({ onPlayAgain, onHome, onProgress }) => {
+export const Result: React.FC<ResultProps> = ({ onPlayAgain, onNextLevel, onHome, onProgress }) => {
   const { state, finishAndSaveProgress } = useGame();
   const accuracy = getAccuracyPercentage(state.correctAnswers, state.correctAnswers + state.wrongAnswers);
 
@@ -29,6 +30,12 @@ export const Result: React.FC<ResultProps> = ({ onPlayAgain, onHome, onProgress 
   };
 
   const perf = getPerformance();
+  
+  // Check if there's a next level
+  const difficultyOrder = ['beginner', 'intermediate', 'advanced', 'expert'];
+  const currentIndex = difficultyOrder.indexOf(state.selectedDifficulty || 'beginner');
+  const hasNextLevel = currentIndex < difficultyOrder.length - 1;
+  const nextLevelName = hasNextLevel ? difficultyOrder[currentIndex + 1] : null;
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -88,9 +95,14 @@ export const Result: React.FC<ResultProps> = ({ onPlayAgain, onHome, onProgress 
       </motion.div>
 
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }}
-        className="flex flex-col sm:flex-row gap-4">
-        <NeonButton onClick={onPlayAgain} variant="cyan" size="lg">Play Again</NeonButton>
-        <NeonButton onClick={onProgress} variant="purple" size="lg">View Progress</NeonButton>
+        className="flex flex-col sm:flex-row gap-4 flex-wrap justify-center">
+        {hasNextLevel && (
+          <NeonButton onClick={onNextLevel} variant="cyan" size="lg">
+            Next Level → {nextLevelName?.charAt(0).toUpperCase()}{nextLevelName?.slice(1)}
+          </NeonButton>
+        )}
+        <NeonButton onClick={onPlayAgain} variant="purple" size="lg">Play Again</NeonButton>
+        <NeonButton onClick={onProgress} variant="pink" size="lg">View Progress</NeonButton>
         <NeonButton onClick={onHome} variant="green" size="lg">Home</NeonButton>
       </motion.div>
     </motion.div>

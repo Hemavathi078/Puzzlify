@@ -45,6 +45,22 @@ const AppContent: React.FC = () => {
     }
   };
 
+  const handleNextLevel = () => {
+    const difficultyOrder: Difficulty[] = ['beginner', 'intermediate', 'advanced', 'expert'];
+    const currentIndex = difficultyOrder.indexOf(state.selectedDifficulty!);
+    
+    if (currentIndex < difficultyOrder.length - 1) {
+      const nextDifficulty = difficultyOrder[currentIndex + 1];
+      dispatch({ type: 'SELECT_DIFFICULTY', payload: nextDifficulty });
+      if (state.selectedCategory) {
+        startGame(state.selectedCategory, nextDifficulty);
+      }
+    } else {
+      // Already at expert, go back to journey map
+      dispatch({ type: 'SET_SCREEN', payload: 'difficulty' });
+    }
+  };
+
   const handleHome = () => {
     dispatch({ type: 'RESET_GAME' });
   };
@@ -112,6 +128,7 @@ const AppContent: React.FC = () => {
           <Result
             key="result"
             onPlayAgain={handlePlayAgain}
+            onNextLevel={handleNextLevel}
             onHome={handleHome}
             onProgress={handleProgress}
           />
