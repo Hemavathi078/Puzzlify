@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useGame } from '../context/GameContext';
 import { NeonButton } from '../components/common/NeonButton';
 import { NeonCard } from '../components/common/NeonCard';
-import { CheckIcon, CrossIcon, TrophyIcon } from '../components/common/NeonIcons';
+import { TrophyIcon } from '../components/common/NeonIcons';
 import { getAccuracyPercentage } from '../utils/gameLogic';
 import { getCategoryName } from '../data/puzzles';
 
