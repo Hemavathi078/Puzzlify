@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ onStartPlaying }) => {
           <div className="flex flex-col">
             <span className="text-sm sm:text-lg font-bold leading-tight">
               <span className="text-[#00f5ff]" style={{ textShadow: '0 0 10px #00f5ff' }}>Puzzle</span>
-              <span className="text-white">Neon</span>
+              <span className="text-white">NeonX</span>
             </span>
             <span className="text-[8px] sm:text-[10px] text-gray-500 leading-tight hidden sm:block">Train Your Brain</span>
           </div>

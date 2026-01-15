@@ -106,7 +106,7 @@ export const WelcomePopup: React.FC<WelcomePopupProps> = ({ onStartPlaying }) =>
               className="text-xl sm:text-2xl font-bold mb-2"
             >
               <span className="text-white">Welcome to </span>
-              <span className="text-[#00f5ff]" style={{ textShadow: '0 0 15px #00f5ff' }}>PuzzleNeon!</span>
+              <span className="text-[#00f5ff]" style={{ textShadow: '0 0 15px #00f5ff' }}>PuzzleNeonX!</span>
             </motion.h2>
 
             {/* Subtitle */}

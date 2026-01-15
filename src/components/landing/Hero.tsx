@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartPlaying, onHowItWorks }) => {
         <span className="text-white">Train Your Brain with</span>
         <br />
         <span className="bg-gradient-to-r from-[#00f5ff] via-[#bf00ff] to-[#ff00ff] bg-clip-text text-transparent">
-          PuzzleNeon Games
+          PuzzleNeonX Games
         </span>
       </motion.h1>
       
